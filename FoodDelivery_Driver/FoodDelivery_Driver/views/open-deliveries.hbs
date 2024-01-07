@@ -1,0 +1,46 @@
+<body>
+<div class="h1-background-container">
+    <h1>Open Deliveries</h1>   
+</div> 
+
+<form action="/open-deliveries" method="post">
+  {{#each readyOrders}}
+    <div class="order-container">
+        <input type="radio" name="selectedOrder" value="{{this._id}}" id="{{this._id}}">
+        <label for="{{this._id}}">
+            <strong>Customer Name:</strong> {{this.customerName}}<br>
+            <strong>Delivery Address:</strong> {{this.deliveryAddress}}<br>
+            <strong>Ordered Items:</strong> {{this.itemsOrdered}}<br>
+            <strong>Order Date:</strong> {{this.orderDate}}<br>
+        </label>
+    </div>
+  {{/each}}
+  <input class= "submit-button" type="submit" value="Deliver Selected Order">
+</form>
+{{#if errorMsg}}
+                <p style="font-style: italic; color: #FF0000;">{{errorMsg}}</p>   
+{{/if}}
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // Add a change event listener to radio buttons
+    var radioButtons = document.querySelectorAll('input[type="radio"]');
+    
+    for (var i = 0; i < radioButtons.length; i++) {
+        radioButtons[i].addEventListener("change", function () {
+            // Remove the 'selected' class from all order containers
+            var orderContainers = document.querySelectorAll('.order-container');
+            
+            for (var j = 0; j < orderContainers.length; j++) {
+                orderContainers[j].classList.remove('selected');
+            }
+            
+            // Add the 'selected' class to the parent container of the selected radio button
+            this.parentElement.classList.add('selected');
+        });
+    }
+});
+</script>
+  
+</body>
+

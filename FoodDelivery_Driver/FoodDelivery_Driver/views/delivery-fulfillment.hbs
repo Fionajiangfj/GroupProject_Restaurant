@@ -1,0 +1,35 @@
+<body>
+ <div class="h1-background-container">
+    <h1>Delivery Fulfillment</h1>   
+</div> 
+
+<h3>Your Assigned Orders</h3>
+
+
+  {{#each assignedOrders}}
+  <form action="/delivery-fulfillment/{{this._id}}" method="post" enctype="multipart/form-data">
+    <div class="assignedOrders-container">
+        <label for="{{this._id}}">
+            <strong>Customer Name:</strong> {{this.customerName}}<br>
+            <strong>Delivery Address:</strong> {{this.deliveryAddress}}<br>
+            <strong>Ordered Items:</strong> {{this.itemsOrdered}}<br>
+            <strong>Order Date:</strong> {{this.orderDate}}<br>
+        </label>
+        <div class="upload-file-container">
+        <label for="photo"><strong>Upload delivered order</strong> </label>
+        <input type="file" name="deliveryphoto">
+        </div>
+
+        <button class="submit-button" type="submit"> Change status to delivered </button>
+    </div>
+    </form>
+  {{/each}}
+
+{{#if errorMsg}}
+        <p style="font-style: italic; color: #FF0000;">{{errorMsg}}</p>   
+{{/if}}
+
+{{#if Msg}}
+        <p style="font-style: italic; color:#228B22">{{Msg}}</p>   
+{{/if}}
+</body>

@@ -1,0 +1,12 @@
+<main class="main-center">
+    <h1>Congrats! Your Order has been placed successfully!</h1>
+    <p>
+        Here is your order confirmation number,
+        <a href="/order_status/{{OCN}}">{{OCN}}</a>. Click to track your order.
+    </p>
+    <div id="recipe">
+        {{#each orderList}}
+        <p>Recipe for {{this.name}}: {{this.recipe}}</p>
+        {{/each}}
+    </div>
+</main>

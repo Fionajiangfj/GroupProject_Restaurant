@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Order Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap">
+    <script src="https://kit.fontawesome.com/b17ed72472.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+
+        header {
+            background-image: url('/photos/delivery-fulfillment.webp');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+            height: 20vh;
+            padding-top: 20px;
+        }
+
+        header h1 {
+            font-size: 40px;
+            margin: 0;
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 1px 2px 5px #000;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #2b2b2b;
+            text-transform: uppercase;
+            margin: 0 15px;
+            background-color: white;
+            padding: 5px;
+            border-radius: 6px;
+            border: 1px solid black;
+        }
+
+        header a:hover {
+            font-weight: bold;
+            color: #e1c735;
+            background-color: black;
+            border: 2px solid #e1c735;
+        }
+
+        .search {
+            margin-left: 30px;
+            margin-bottom: 20px;
+            color: #f4f4f4;
+        }
+
+        .TITLE {
+            padding: 30px 0 10px 30px;
+            font-size: 24px;
+            color: #f4f4f4;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 1px 2px 5px #e1c735;
+            border-radius: 6px;
+            margin: 20px
+        }
+
+        li h2 {
+            color: #e1c735;
+        }
+
+        li a {
+            text-decoration: none;
+            color: #e1c735;
+        }
+
+        li a:hover {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #e1c735;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            padding: 8px 20px;
+            margin-left: 25px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #fff;
+            color: #e1c735;
+            border: 2px solid #e1c735;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+
+        select {
+            padding: 5px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+
+        .footer-section {
+            margin: 10px;
+            padding: 10px;
+        }
+
+
+        .social-icons {
+            font-size: 24px;
+        }
+
+
+        .social-icons a {
+            margin: 0 15px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>SAWADEE</h1>
+        <a href="#">Home</a>
+        <a href="#">Menu</a>
+        <a href="/">Orders</a>
+        <a href="#">Drivers</a>
+    </header>
+
+    <h1 class="TITLE">Restaurant Orders</h1>
+
+    <form action="/search" method="GET" class="search">
+        <label for="customerName">Search by Customer:</label>
+        <input type="text" id="customerName" name="customerName" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {{#each orders}}
+        <li>
+            <h2><b>Customer Name:</b> {{this.customerName}}</h2>
+            <p><b>Delivery Address:</b> {{this.deliveryAddress}}</p>
+            <p><b>Date of Order:</b> {{this.orderDate}}</p>
+            <p><b>Items Ordered:</b> {{this.itemsOrdered}}</p>
+            <p><b>Order Total:</b> {{this.orderTotal}}</p>
+            <p><b>Status:</b> {{this.status}}</p>
+
+            {{#ifCond this.status "===" "DELIVERED"}}
+            <p><b>Driver Name:</b> {{this.driverName}}</p>
+            <p><b>License Plate:</b> {{this.licensePlate}}</p>
+            <p><b>Proof of Delivery:</b> <a href="{{this.proofOfDelivery}}" target="_blank">View Proof</a></p>
+            {{/ifCond}}
+
+            {{#ifCond this.status "===" "IN TRANSIT"}}
+            <p><b>Driver Name:</b> {{this.driverName}}</p>
+            <p><b>License Plate:</b> {{this.licensePlate}}</p>
+            {{/ifCond}}
+
+            <!-- Form for updating order status -->
+            <form action="/update-status" method="POST">
+                <input type="hidden" name="orderId" value="{{_id}}">
+                <label for="status"><b>Update Status:</b></label>
+                <select name="status" id="status">
+                    <option value="RECEIVED">Received</option>
+                    <option value="READY FOR DELIVERY">Ready for delivery</option>
+                    <option value="IN TRANSIT">In Transit</option>
+                    <option value="DELIVERED">Delivered</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </li>
+        {{/each}}
+    </ul>
+
+    <footer>
+        <div class="footer-section">
+            <h4>Location</h4>
+            <p>123 Thai St., Foodville, Yummyland</p>
+        </div>
+        <div class="footer-section">
+            <h4>Hours of Operation</h4>
+            <p>Mon-Fri: 11:00 AM - 10:00 PM</p>
+            <p>Sat-Sun: 12:00 PM - 11:00 PM</p>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: Sawadee@thairestaurant.com</p>
+            <p>Phone: +1 234 567 8900</p>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </footer>
+</body>
+
+</html>

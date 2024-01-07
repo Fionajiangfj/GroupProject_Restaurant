@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Food Orders</title>
+        <style>
+
+
+            header {
+                background-color: #f4f4f4;
+                padding: 10px 0;
+                text-align: center;
+            }
+
+
+            header h1 {
+                font-size: 40px;
+                margin: 0;
+            }
+
+
+            header a {
+                text-decoration: none;
+                color: #2b2b2b;
+                text-transform: uppercase;
+                margin: 0 15px;
+            }
+
+
+            header a:hover {
+                font-weight: bold;
+                color: #e1c735;
+            }
+
+
+            h1{
+                text-align: center;
+                color: #FFFFFF; 
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+            }
+
+            .h1-background-container{
+                background-image: url('/photos/delivery-fulfillment.webp'); 
+                background-size: cover; 
+                background-position: center; 
+                text-align: center; 
+                position: relative;
+                height: 20vh;
+            }
+
+            /* Dark overlay with 60% transparency */
+            .h1-background-container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: rgba(0, 0, 0, 0.7); 
+            }
+
+            /* Center the text vertically and horizontally */
+            .h1-background-container h1 {
+                position: relative;
+                z-index: 2; 
+            }
+
+            h3 {
+                text-align: left;
+                color:#dc9f38;
+            }
+            .order-container {
+                display:flex;
+                flex-direction:row;
+                background-color:white;
+                row-gap: 10px;
+                border: 1.5px solid #ddd;
+                padding: 10px;
+                margin: 10px;
+                background-color: #fff;
+                transition: background-color 0.3s;
+            } 
+
+            .order-container.selected {
+                background-color: #fff;
+                border: 1.5px solid #dc9f38;
+                color: #dc9f38;
+            }
+
+            label {
+                display: block;
+                padding-left: 5px;
+            }
+
+            input[type="radio"]{
+                accent-color: #dc9f38;     
+            }
+
+            
+             .submit-button {
+                    background-color: #dc9f38;
+                    border: 2px solid #ffcc00;
+                    color: #fff;
+                    padding: 10px 10px;
+                    margin-top: 1%;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    transition: background-color 0.3s, border-color 0.3s; 
+             }
+            .submit-button:hover {
+                background-color: #fff;
+                border-color: #dc9f38;
+                color: #dc9f38;
+            }
+
+            body {
+                background-color: #121212;
+                font-family: 'IBM Plex Mono', monospace;
+            }
+
+
+            label, p {
+                color: #1d1d1d;
+                display: block;
+                margin: 10px 0;
+            }
+
+            .assignedOrders-container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 1px solid #ddd;
+                padding: 15px;
+                margin: 10px;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+                border-radius: 8px;
+                text-align: center;
+                
+            }
+
+            .upload-file-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px 0;
+            }
+
+            .upload-file-container label {
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .upload-file-container input[type="file"] {
+                width: 100%;
+                max-width: 200px; /* Adjust the maximum width as needed */
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .upload-file-container input[type="file"]::-webkit-file-upload-button {
+                background-color: #fff;
+                border-color: #dc9f38;
+                color: #dc9f38;
+                border-radius: 4px; 
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .upload-file-container input[type="file"]::-webkit-file-upload-button:hover {
+                background-color: #dc9f38; /* Change the background color on hover */
+                color: #FFFFFF; /* Change the text color on hover */
+            }
+
+            footer p {
+                color: white;
+             }  
+
+            
+
+                
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="/logout">Logout</a>
+            <a href="/open-deliveries">Open Orders</a>
+            <a href="/delivery-fulfillment">Delivery Fulfillment</a>
+        </header>
+        {{{body}}}
+        <footer>
+        <p>&copy; This is my site</p>
+        </footer>
+    </body>
+</html>

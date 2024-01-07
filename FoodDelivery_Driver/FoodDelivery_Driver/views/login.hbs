@@ -1,0 +1,17 @@
+<body>
+<h1 class="h1-container"> Driver Login</h1>    
+<form class="form-container" action = "/login" method="post">
+
+                <label for="username"> Username</label>
+                <input type="text" name="username" placeholder="Enter username">
+
+                <label for="password"> Password</label>
+                <input type="text" name="password" placeholder="Enter Password">
+
+                <button class="submit-button""type="submit" > Login </button>
+</form>
+            {{#if errorMsg}}
+                <p style="font-style: italic; color: #FF0000;">{{errorMsg}}</p>   
+            {{/if}}
+
+</body>

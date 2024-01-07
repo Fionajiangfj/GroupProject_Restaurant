@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Sawadee Drivers Portal </title>
+        <style>
+
+            header {
+                background-color: #f4f4f4;
+                padding: 10px 0;
+                text-align: center;
+            }
+
+
+            header h1 {
+                font-size: 40px;
+                margin: 0;
+            }
+
+
+            header a {
+                text-decoration: none;
+                color: #2b2b2b;
+                text-transform: uppercase;
+                margin: 0 15px;
+            }
+
+
+            header a:hover {
+                font-weight: bold;
+                color: #e1c735;
+            } 
+
+            .h1-container {
+             text-align: center;
+             color: white;
+            }
+            
+            
+            .form-container {
+                    display:flex;
+                    flex-direction:column;
+                    background-color:white;
+                    row-gap: 15px;
+                    align-items: center;
+                    margin: 0 auto;
+                    border: 1px gray solid;
+                    border-radius: 2%;
+                    margin-bottom: 10px;
+                    margin-top: 20px;
+                    max-width: 70vh;
+                    max-height: 80vh;
+                    padding: 20px;
+                    
+            }
+
+            .submit-button {
+                background-color: #dc9f38;
+                border: 2px solid #ffcc00;
+                color: #fff;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 4px;
+                max-width: 300px ;
+                transition: background-color 0.3s, border-color 0.3s; 
+         }
+
+            .submit-button:hover {
+                background-color: #fff;
+                border-color: #dc9f38;
+                color: #dc9f38;
+            }
+            
+            body {
+                font-family: 'IBM Plex Mono', monospace;
+                background-color: #121212;
+                
+
+            }
+
+            label, p {
+                color: #1d1d1d;
+            }
+
+
+            footer p {
+                color: white;
+             }         
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>SAWADEE DRIVER PORTAL</h1>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </header>
+        {{{body}}}
+        <footer>
+        <p>&copy; This is my site</p>
+        </footer>
+    </body>
+
+</html>

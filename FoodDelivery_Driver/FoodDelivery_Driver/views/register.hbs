@@ -1,0 +1,35 @@
+
+<body>
+    <h1 class="h1-container"> Driver Registration</h1> 
+            <form class="form-container" action = "/register" method="post">
+
+                <label for="username"> Username</label>
+                <input type="text" name="username" placeholder="Enter username">
+
+                <label for="password"> Password</label>
+                <input type="text" name="password" placeholder="Enter Password">
+
+                <label for="firstName"> First Name</label>
+                <input type="text" name="firstName" placeholder="Enter First Name">
+
+                <label for="lastName"> Last Name</label>
+                <input type="text" name="lastName" placeholder="Enter Last Name">
+
+                <label for="vehicleModel"> Vehicle Model</label>
+                <input type="text" name="vehicleModel" placeholder="Volkswagen Golf R">
+
+                <label for="color"> Color of Vehicle  </label>
+                <input type="text" name="color" placeholder="#fcba03">
+
+                <label for="licensePlate"> License Plate  </label>
+                <input type="text" name="licensePlate" placeholder="CDMX929">
+
+                <button class="submit-button" type="submit" > Register </button>
+            </form>
+            {{#if errorMsg}}
+                <p style="font-style: italic; color:#FF0000;">{{errorMsg}}</p>   
+            {{/if}}
+
+            
+
+</body>
